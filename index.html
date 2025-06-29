@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Extrator de Texto de Imagens | OCR Online Gratuito</title>
+  <meta name="description" content="Extraia texto de imagens gratuitamente com nosso site online de OCR. Simples, rápido e sem instalar nada.">
+  <link rel="canonical" href="https://seusite.com" />
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 800px; margin: 2rem auto; padding: 1rem; line-height: 1.6; }
+    h1 { color: #0A2540; font-size: 2rem; }
+    p { font-size: 1rem; margin: 1rem 0; }
+    input[type="file"] { margin: 1rem 0; }
+    button { padding: 0.8rem 1.5rem; background: #00D26A; color: white; border: none; border-radius: 8px; cursor: pointer; }
+    textarea { width: 100%; height: 300px; margin-top: 1rem; }
+    footer { text-align: center; margin-top: 2rem; font-size: 0.8rem; color: #555; }
+  </style>
+  <!-- Google AdSense tag (adicione seu código real de cliente) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXX" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header>
+    <h1>Extrator de Texto de Imagens - OCR Online</h1>
+    <p>Envie uma imagem e extraia o texto facilmente, direto no seu navegador. Simples, rápido e gratuito!</p>
+  </header>
+
+  <main>
+    <input type="file" id="imageInput" accept="image/*"/>
+    <button onclick="extractText()">Extrair Texto</button>
+    <textarea id="outputText" placeholder="O texto extraído aparecerá aqui..."></textarea>
+  </main>
+
+  <!-- Exemplo de espaço para anúncios do Google AdSense -->
+  <ins class="adsbygoogle"
+       style="display:block; text-align:center; margin-top:2rem;"
+       data-ad-client="ca-pub-XXXXXXX"
+       data-ad-slot="1234567890"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>
+       (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+  <footer>
+    <p>&copy; 2025 Extrator de Texto de Imagens. Todos os direitos reservados.</p>
+  </footer>
+
+  <!-- Tesseract.js via CDN -->
+  <script src="https://unpkg.com/tesseract.js@v4.0.2/dist/tesseract.min.js"></script>
+  <script>
+    function extractText() {
+      const fileInput = document.getElementById('imageInput');
+      const output = document.getElementById('outputText');
+      if (fileInput.files.length === 0) {
+        alert('Por favor, selecione uma imagem.');
+        return;
+      }
+      const file = fileInput.files[0];
+      output.value = 'Processando... Aguarde!';
+      Tesseract.recognize(file, 'por', { logger: m => console.log(m) })
+        .then(({ data: { text } }) => {
+          output.value = text;
+        })
+        .catch(err => {
+          output.value = 'Erro ao processar a imagem: ' + err;
+        });
+    }
+  </script>
+</body>
+</html>
